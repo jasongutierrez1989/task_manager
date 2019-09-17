@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task Manager</title>
+    <%= csrf_meta_tags %>
+
+  <body>
+    
+    <div class="wrapper">
+      <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+    
+      <%= yield %>
+
+      <footer class="branding">
+      <% if request.path != "/home" && request.path != "/" && request.path != "/login" && logged_in?%>
+        <a href="/home"><button>Home</button></a>
+      <% end %>
+      <% if logged_in? %>
+        <a href="/logout" onclick="return confirm('Log Out?');"><button>Log Out</button></a>
+      <% end %>
+      </footer>
+    </div>
+    
+  </body>
+</html>

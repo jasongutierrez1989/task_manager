@@ -1,0 +1,22 @@
+<h1>Location Information</h1>
+
+<h2><%= @location.name %></h2>
+<ul>
+    <li>Notes: <%= @location.notes if @location.notes %></li>
+</ul><br>
+
+<h3>Current Users</h3>
+<ul>
+<% @users.each do |c| %>
+    <% a = Task.find_by(:location_id => @location.id, :user_id => c.id) %>
+    <li><%= link_to "#{c.name}", location_task_path(@location, a) %></li>
+<% end %>
+</ul>
+<br>
+<p><%= link_to "Add task", new_location_task_path(@location) %></p>
+<br></br>
+
+
+<p><%= link_to "Edit this location's info", edit_location_path(@location) %><%= form_tag location_path(@location.id), method: "delete" do %>
+    <%= submit_tag "Delete location" %>
+  <% end %>

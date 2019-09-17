@@ -1,0 +1,18 @@
+<h1>Edit Location</h1>
+
+<%= form_for @location do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %><br><br>
+    <br></br>
+    <%= f.submit %>
+<% end %>
+
+<% if @location.errors.any? %>
+  <div class="error_explanation">
+    <% @location.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+  </div>
+<% end %>

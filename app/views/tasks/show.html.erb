@@ -1,0 +1,12 @@
+<h2>Task Information</h2>
+
+Name: <%= @task.name %><br>
+Description: <%= @task.description %><br>
+Location: <%= @task.location.name %><br>
+Assigned to: <%= @task.user.name %><br>
+<br></br>
+<p><%= link_to "Edit this task", edit_task_path(@task.id) %></p>
+<%= form_tag task_path(@task.id), method: "delete" do %>
+    <%= submit_tag "Delete task" %>
+  <% end %>
+

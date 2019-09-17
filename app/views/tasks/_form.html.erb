@@ -1,0 +1,25 @@
+<%= form_for([@location, @task]) do |f| %>
+    
+    <strong><%= f.label :name %></strong>
+    <%= f.text_field :name %><br>
+    
+    <strong><%= f.label :description %></strong>
+    <%= f.text_field :description %><br></br>
+    
+    <strong><%= f.label :location_id %></strong><br>
+    <!-- <%= f.collection_check_boxes :location_id, Location.all, :id, :name %><br></br> -->
+    <%= f.select(:location_id) do %>
+        <%= options_from_collection_for_select(Location.all, :id, :name, :selected => @task.location_id) %>
+    <% end %>
+
+    <br></br>
+    <strong><%= f.label :user_id %></strong><br>
+    <!--<%= f.collection_check_boxes :user_id, User.all, :id, :name %><br> -->
+    <%= f.select(:user_id) do %>
+        <%= options_from_collection_for_select(User.all, :id, :name, :selected => @task.user_id) %>
+    <% end %>
+
+    <br></br>
+    <!-- <%= f.submit %> -->
+    <button type="submit" name="commit" value="Create Task">Create Task</button>
+<% end %>

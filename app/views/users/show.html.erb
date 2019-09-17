@@ -1,0 +1,17 @@
+<h1>User Info: </h1>
+
+<div>
+    <ul>
+        <li>Name: <%= @user.name %></li>
+        <li>Position: <%= @user.job %></li>
+        <li>Current task(s):
+            <% if @user.tasks %>
+                <% @user.tasks.each do |a| %>
+                    <%= link_to a.name, location_task_path(a.location, a) %>
+                <% end %>
+            <% end %></li>
+        <br>
+    </ul>
+<br>
+<br>
+

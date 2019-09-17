@@ -1,0 +1,32 @@
+<h1>New Location Form</h1>
+
+<%= form_for @location do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %><br></br>
+    
+    <p>Create Task?</p>
+    <%= f.fields_for :tasks, @location.tasks.build do |a| %>
+        
+        <p>Select a user:
+        <%= select_tag 'location[tasks_attributes][0][user_id]', content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(User.all, :id, :name) %></p>
+
+        <%= a.hidden_field :location_id, value: @location.id %>
+
+        <%= a.label :name, "Task Name" %>
+        <%= a.text_field :name %><br>
+        <%= a.label :description %>
+        <%= a.text_field :description %>
+    <% end %>
+    <br>
+    <%= f.submit %>
+<% end %>
+
+<% if @location.errors.any? %>
+  <div class="error_explanation">
+    <% @location.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+  </div>
+<% end %>

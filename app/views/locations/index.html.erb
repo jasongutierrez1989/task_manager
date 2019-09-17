@@ -1,0 +1,15 @@
+<h2>Current Locations</h2>
+<div class="content">
+    <ul id="locations_list">
+    <% @locations.each do |s| %>
+        <li><%= link_to "#{s.name}", location_path(s) %></li>
+    <% end %>
+    </ul>
+</div>
+
+<div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+        <li><%= link_to "Add a new location", new_location_path %></li>
+    </ul>
+</div>

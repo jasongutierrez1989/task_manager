@@ -1,0 +1,14 @@
+<h1>All Tasks for all Locations:</h1>
+<ul id="taskList">
+<% @tasks.each do |s| %>
+    <li><%= link_to "#{s.name}", task_path(s) %></li>
+<% end %>
+</ul>
+<br>
+
+<div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+        <li><%= link_to "Add a new Task", new_task_path %></li>
+    </ul>
+</div>
